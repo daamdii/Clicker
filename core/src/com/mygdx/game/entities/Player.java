@@ -15,6 +15,12 @@ public class Player extends Image{
 	private final static int STARTING_X = 200;
 	private final static int STARTING_Y = 500;
 	
+	private final static int MOVE_AMOUNT_Y = 10;
+	private final static float MOVE_ACTION_TIME = 0.30f;
+	
+	private final static int GROW_AMOUNT_Y = 20;
+	private final static float GROW_ACTION_TIME = 0.2f;
+	
 	public Player(){
 		super(new Texture("badlogic.jpg"));
 		this.setOrigin(WIDTH/2,HEIGHT/2);
@@ -25,29 +31,29 @@ public class Player extends Image{
 	public void actionsOnClick() {
 		movePlayerAction();
 		growPlayerAction();
-		rotatPlayerAction();
+		rotatePlayerAction();
 	}
 	
 	private void movePlayerAction() {
-		int moveAmount = MathUtils.random(-100,100);
+		int moveAmountX = MathUtils.random(-100,100);
 		Action moveAction = Actions.sequence(
-				Actions.moveBy(moveAmount, 10, 0.30f, Interpolation.circleOut),
-				Actions.moveBy(-moveAmount, -10, 0.30f, Interpolation.circle)
+				Actions.moveBy(moveAmountX, MOVE_AMOUNT_Y, MOVE_ACTION_TIME, Interpolation.circleOut),
+				Actions.moveBy(-moveAmountX, -MOVE_AMOUNT_Y, MOVE_ACTION_TIME, Interpolation.circle)
 				);
 		
 		this.addAction(moveAction);
 	}	
 	
 	private void growPlayerAction() {
-		int growAmount = MathUtils.random(-30,100);
+		int growAmountX = MathUtils.random(-30,100);
 		Action growAction = Actions.sequence(
-				Actions.sizeBy(growAmount, 20, 0.2f, Interpolation.circleOut),
-				Actions.sizeBy(-growAmount, -20, 0.2f, Interpolation.circle)
+				Actions.sizeBy(growAmountX, GROW_AMOUNT_Y, GROW_ACTION_TIME, Interpolation.circleOut),
+				Actions.sizeBy(-growAmountX, -GROW_AMOUNT_Y, GROW_ACTION_TIME, Interpolation.circle)
 				);
 		this.addAction(growAction);
 	}
 	
-	private void rotatPlayerAction() {
+	private void rotatePlayerAction() {
 		if(this.getHeight()>170){
 			this.addAction(Actions.rotateBy(MathUtils.randomSign()*360, 0.4f));
 		}
