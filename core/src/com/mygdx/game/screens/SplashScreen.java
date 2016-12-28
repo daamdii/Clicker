@@ -13,8 +13,11 @@ public class SplashScreen extends AbstractScreen{
 	   it must be final */
 	public SplashScreen(final ClickerGame game) {
 		super(game);
-		init();
-		Timer.schedule(new Task() {
+		changeSplashScreenToGameplayScreen(game);		
+	}
+	
+	private void changeSplashScreenToGameplayScreen(final ClickerGame game){
+			Timer.schedule(new Task() {
 			
 			@Override
 			public void run() {
@@ -22,8 +25,8 @@ public class SplashScreen extends AbstractScreen{
 			}
 		}, 2);
 	}
-
-	private void init() {
+	@Override
+	protected void init() {
 		//TODO implement better assets loading when game grows
 		splashImage = new Texture("ddr.png");
 	}

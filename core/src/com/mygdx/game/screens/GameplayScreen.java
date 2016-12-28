@@ -8,17 +8,16 @@ public class GameplayScreen extends AbstractScreen{
 	
 	public GameplayScreen(ClickerGame game){
 		super(game);
-		init();
 	}
 	
-	private void init(){
+	@Override
+	protected void init(){
 		initPlayer();
 		addPlayerToStage();
 	}
 	
 	private void initPlayer() {
 		player = new Player();
-		
 	}
 	private void addPlayerToStage(){
 		stage.addActor(player);

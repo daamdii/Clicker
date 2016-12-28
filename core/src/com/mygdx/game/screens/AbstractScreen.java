@@ -20,16 +20,33 @@ public abstract class AbstractScreen implements Screen {
 	public AbstractScreen(ClickerGame game){
 		this.game = game;
 		createCamera();
-		spriteBatch = new SpriteBatch();
-		stage = new Stage(new StretchViewport(ClickerGame.WIDTH, ClickerGame.HIGHT,camera));
-		Gdx.input.setInputProcessor(stage);
+		createSpriteBatch();
+		createStage();
+		init();
 	}
-
+	
 	private void createCamera() {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, ClickerGame.WIDTH, ClickerGame.HIGHT);
 		camera.update();
 	}
+	
+	private void createSpriteBatch(){
+		spriteBatch = new SpriteBatch();
+	}
+	
+	private void createStage(){
+		stage = new Stage(new StretchViewport(ClickerGame.WIDTH, ClickerGame.HIGHT,camera));
+		Gdx.input.setInputProcessor(stage);
+	}
+	
+	protected abstract void init();
+	
+	private void clearScreen() {
+		Gdx.gl.glClearColor(0, 0, 0, 0);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	}
+	
 	
 	@Override
 	public void render(float delta) {
@@ -37,12 +54,7 @@ public abstract class AbstractScreen implements Screen {
 		camera.update();
 		spriteBatch.setProjectionMatrix(camera.combined);
 	}
-
-	private void clearScreen() {
-		Gdx.gl.glClearColor(0, 0, 0, 0);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-	}
-
+	
 	@Override
 	public void resume() {
 		game.setPaused(false);
