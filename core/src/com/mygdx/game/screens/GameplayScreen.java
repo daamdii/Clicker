@@ -28,14 +28,15 @@ public class GameplayScreen extends AbstractScreen{
 		playerButton.setHeight(200);
 		playerButton.setPosition(100, 100);
 		playerButton.setDebug(true);
-		addListenerToPlayerButton();
 		addActorToStage(playerButton);
+		addListenerToPlayerButton();
 	}
 
 	private void addListenerToPlayerButton() {
 		playerButton.addListener(new ClickListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				player.actionsOnClick();
 				return super.touchDown(event, x, y, pointer, button);
 			}
 		});
