@@ -25,6 +25,7 @@ public class SplashScreen extends AbstractScreen{
 			}
 		}, 2);
 	}
+	
 	@Override
 	protected void init() {
 		//TODO implement better assets loading when game grows
