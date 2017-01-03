@@ -13,6 +13,7 @@ public class GameplayScreen extends AbstractScreen{
 	
 	private Player player;
 	private Button playerButton;
+	private Button resetScoreButton;
 	private PointsCounter pointsCounter;
 	
 	public GameplayScreen(ClickerGame game){
@@ -23,9 +24,20 @@ public class GameplayScreen extends AbstractScreen{
 	protected void init(){
 		initPlayer();
 		initPlayerButton();
+		initResetButton();
 		initPointsCounter();
 	}
 	
+	private void initResetButton() {
+		resetScoreButton = new Button(new ButtonStyle());
+		resetScoreButton.setWidth(100);
+		resetScoreButton.setHeight(200);
+		resetScoreButton.setPosition(350, 100);
+		resetScoreButton.setDebug(true);
+		addActorToStage(resetScoreButton);
+		addListenerToResetScoreButton();
+	}
+
 	private void initPlayer() {
 		player = new Player();
 		addActorToStage(player);
@@ -44,6 +56,16 @@ public class GameplayScreen extends AbstractScreen{
 	private void initPointsCounter() {
 		pointsCounter = new PointsCounter();
 		addActorToStage(pointsCounter);
+	}
+	
+	private void addListenerToResetScoreButton() {
+		resetScoreButton.addListener(new ClickListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				pointsCounter.resetPoint();
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
 	}
 	
 	private void addListenerToPlayerButton() {

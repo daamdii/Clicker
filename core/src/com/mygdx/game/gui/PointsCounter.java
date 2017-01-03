@@ -49,10 +49,15 @@ public class PointsCounter extends Label {
 	
 	public void addPoint(){
 		points++;
-		saveScoreInPreferences();
+		updateScoreInPreferences();
 	}
 	
-	private void saveScoreInPreferences() {
+	public void resetPoint(){
+		points = DEFAULT_POINTS_AMOUNT;
+		updateScoreInPreferences();
+	}
+	
+	private void updateScoreInPreferences() {
 		preferences.putInteger(GAME_SCORE, points);
 		preferences.flush();
 	}
