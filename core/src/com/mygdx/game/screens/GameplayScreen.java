@@ -10,6 +10,7 @@ import com.mygdx.game.entities.Player;
 import com.mygdx.game.gui.PointsCounter;
 
 public class GameplayScreen extends AbstractScreen{
+	
 	private Player player;
 	private Button playerButton;
 	private PointsCounter pointsCounter;
