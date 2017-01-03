@@ -1,4 +1,4 @@
-package com.mygdx.game.gui;
+package com.mygdx.game.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
@@ -19,7 +19,7 @@ public class PointsCounter extends Label {
 	
 	private static final String POINT_LABEL_NAME = "Points: ";
 	
-	private Preferences preferences;
+	private Preferences scorePreferences;
 	
 	private int points;
 	
@@ -32,11 +32,11 @@ public class PointsCounter extends Label {
 	}
 	
 	private void initScorePreferences(){
-		preferences = Gdx.app.getPreferences(GAME_PREFERENCES);
+		scorePreferences = Gdx.app.getPreferences(GAME_PREFERENCES);
 	}
 	
 	private void loadScoreFromPreferences(){
-		points = preferences.getInteger(GAME_SCORE);
+		points = scorePreferences.getInteger(GAME_SCORE);
 	}
 	
 	public int getPoints() {
@@ -58,8 +58,8 @@ public class PointsCounter extends Label {
 	}
 	
 	private void updateScoreInPreferences() {
-		preferences.putInteger(GAME_SCORE, points);
-		preferences.flush();
+		scorePreferences.putInteger(GAME_SCORE, points);
+		scorePreferences.flush();
 	}
 
 	private void setPositionOfPointsCounter(int posX, int posY){

@@ -7,12 +7,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.ClickerGame;
 import com.mygdx.game.entities.Player;
-import com.mygdx.game.gui.PointsCounter;
+import com.mygdx.game.ui.IClickCallback;
+import com.mygdx.game.ui.PlayerButton;
+import com.mygdx.game.ui.PointsCounter;
 
 public class GameplayScreen extends AbstractScreen{
 	
 	private Player player;
-	private Button playerButton;
+	private PlayerButton playerButton;
 	private Button resetScoreButton;
 	private PointsCounter pointsCounter;
 	
@@ -44,13 +46,15 @@ public class GameplayScreen extends AbstractScreen{
 	}
 	
 	private void initPlayerButton() {
-		playerButton = new Button(new ButtonStyle());
-		playerButton.setWidth(200);
-		playerButton.setHeight(200);
-		playerButton.setPosition(100, 100);
-		playerButton.setDebug(true);
+		playerButton = new PlayerButton(new IClickCallback() {
+			
+			@Override
+			public void onClick() {
+				player.actionsOnClick();
+				pointsCounter.addPoint();
+			}
+		});
 		addActorToStage(playerButton);
-		addListenerToPlayerButton();
 	}
 	
 	private void initPointsCounter() {
@@ -68,17 +72,6 @@ public class GameplayScreen extends AbstractScreen{
 		});
 	}
 	
-	private void addListenerToPlayerButton() {
-		playerButton.addListener(new ClickListener(){
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				player.actionsOnClick();
-				pointsCounter.addPoint();
-				return super.touchDown(event, x, y, pointer, button);
-			}
-		});
-	}
-
 	private void addActorToStage(Actor actor){
 		stage.addActor(actor);
 	}
