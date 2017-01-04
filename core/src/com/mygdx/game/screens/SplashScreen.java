@@ -29,7 +29,7 @@ public class SplashScreen extends AbstractScreen{
 	@Override
 	protected void init() {
 		//TODO implement better assets loading when game grows
-		splashImage = new Texture("ddr.png");
+		splashImage = new Texture("splashScreen.png");
 	}
 	
 	@Override
@@ -37,7 +37,7 @@ public class SplashScreen extends AbstractScreen{
 		super.render(delta);
 		spriteBatch.begin();
 		
-		spriteBatch.draw(splashImage,70, 200);
+		spriteBatch.draw(splashImage,0, 0);
 		
 		spriteBatch.end();
 	}

@@ -31,6 +31,10 @@ public class PointsCounter extends Label {
 		loadScoreFromPreferences();
 	}
 	
+	private void setPositionOfPointsCounter(int posX, int posY){
+		this.setPosition(posX, posY);
+	}
+	
 	private void initScorePreferences(){
 		scorePreferences = Gdx.app.getPreferences(GAME_PREFERENCES);
 	}
@@ -62,9 +66,7 @@ public class PointsCounter extends Label {
 		scorePreferences.flush();
 	}
 
-	private void setPositionOfPointsCounter(int posX, int posY){
-		this.setPosition(posX, posY);
-	}
+	
 	
 	
 	
