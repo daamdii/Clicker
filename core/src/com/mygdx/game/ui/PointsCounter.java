@@ -14,8 +14,8 @@ public class PointsCounter extends Label {
 	private static final int DEFAULT_POINTS_AMOUNT = 0;
 	private static final String DEFAULT_LABEL_NAME = "";
 	
-	private static final int POINTS_COUNTER_POSITION_X = 20;
-	private static final int POINTS_COUNTER_POSITION_Y = 650;
+	private static final int POINTS_COUNTER_POSITION_X = 15;
+	private static final int POINTS_COUNTER_POSITION_Y = 280;
 	
 	private static final String POINT_LABEL_NAME = "Points: ";
 	
